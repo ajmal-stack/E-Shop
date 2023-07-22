@@ -9,7 +9,7 @@ import {
   AiOutlineShoppingCart,
   AiOutlineStar,
 } from "react-icons/ai";
-// import ProductDetailsCard from "../ProductDetailsCard/ProductDetailsCard";
+import ProductDetailsCard from "../ProductDetailsCard/ProductDetailsCard";
 
 const ProductCard = ({ data, isEvent }) => {
   const [click, setClick] = useState(false);
@@ -89,28 +89,28 @@ const ProductCard = ({ data, isEvent }) => {
               className="mr-2 cursor-pointer"
             />
           </div>
-          {/* <div className="py-2 flex items-center justify-between"> */}
-          {/* <div className="flex"> */}
-          {/* <h5 className={`${styles.productDiscountPrice}`}> */}
-          {/* {data.originalPrice === 0
+          <div className="py-2 flex items-center justify-between">
+            <div className="flex">
+              <h5 className={`${styles.productDiscountPrice}`}>
+                {data.originalPrice === 0
                   ? data.originalPrice
-                  : data.discountPrice} */}
-          {/* {data.price === 0 ? data.price : data.discount_price} $ */} //
-          {/* </h5> */}
-          {/* <h4 className={`${styles.price}`} */}
-          {/* {data.originalPrice ? data.originalPrice + ' $' : null} */}
-          {/* {data.price ? data.price + " $" : null} */}
-          {/* </h4> */}
-          {/* </div> */}
-          {/* <span className="font-[400] text-[17px] text-[#68d284]"> */}
-          {/* {data?.sold_out} sold */}
-          {/* {data?.total_sell} sold */}
-          {/* </span> */}
-          {/* </div> */}
+                  : data.discountPrice}
+                {data.price === 0 ? data.price : data.discount_price} $
+              </h5>
+              <h4 className={`${styles.price}`}>
+                {/* {data.originalPrice ? data.originalPrice + " $" : null} */}
+                {data.price ? data.price + " $" : null}
+              </h4>
+            </div>
+            <span className="font-[400] text-[17px] text-[#68d284]">
+              {/* {data?.sold_out} sold */}
+              {data?.total_sell} sold
+            </span>
+          </div>
         </Link>
 
         {/* side options */}
-        {/* <div>
+        <div>
           {click ? (
             <AiFillHeart
               size={22}
@@ -140,27 +140,15 @@ const ProductCard = ({ data, isEvent }) => {
             size={25}
             className="cursor-pointer absolute right-2 top-24"
             // onClick={() => addToCartHandler(data._id)}
+            onClick={() => setOpen(!open)}
             color="#444"
             title="Add to cart"
           />
           {open ? <ProductDetailsCard setOpen={setOpen} data={data} /> : null}
-        </div> */}
+        </div>
       </div>
     </>
   );
 };
 
 export default ProductCard;
-
-// import React, { useState } from "react";
-// import { Link } from "react-router-dom";
-// import styles from "../../../styles/styles";
-
-//   const [click, setClick] = useState(false);
-//   const [open, setOpen] = useState(false);
-
-// const ProductCard = ({ data, isEvent }) => {
-//   return <div>ProductCard</div>;
-// };
-
-// export default ProductCard;
