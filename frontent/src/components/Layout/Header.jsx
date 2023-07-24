@@ -1,20 +1,21 @@
 import React, { useState } from "react";
-import styles from "../../styles/styles";
 import { Link } from "react-router-dom";
+import styles from "../../styles/styles";
+import { categoriesData, productData } from "../../Static/data";
 import {
   AiOutlineSearch,
   AiOutlineHeart,
-  AiOutlineShopping,
+  AiOutlineShoppingCart,
 } from "react-icons/ai";
-import { productData, categoriesData } from "../../Static/data";
-import { IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { BiMenuAltLeft } from "react-icons/bi";
 import DropDown from "./DropDown";
-import { IoIosArrowDown } from "react-icons/io";
 import Navbar from "./Navbar";
 import { CgProfile } from "react-icons/cg";
-
+import { useSelector } from "react-redux";
+import { backend_url } from "../../server";
 const Header = ({ activeHeading }) => {
+  const { isAuthenticated, user } = useSelector((state) => state.user);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchData, setSearchData] = useState(null);
   const [active, setActive] = useState(false);
@@ -22,11 +23,9 @@ const Header = ({ activeHeading }) => {
   const handleSearchChange = (e) => {
     const term = e.target.value;
     setSearchTerm(term);
-    const filteredProducts =
-      productData &&
-      productData.filter((product) =>
-        product.name.toLowerCase().includes(term.toLowerCase())
-      );
+    const filteredProducts = productData.filter((product) =>
+      product.name.toLowerCase().includes(term.toLowerCase())
+    );
     setSearchData(filteredProducts);
   };
   window.addEventListener("scroll", () => {
@@ -52,7 +51,7 @@ const Header = ({ activeHeading }) => {
           <div className="w-[50%] relative">
             <input
               type="text"
-              placeholder="Search Product..."
+              placeholder="search Product..."
               value={searchTerm}
               onChange={handleSearchChange}
               className="h-[40px] w-full px-2 border-[#3957DB] border-[2px] rounded-md"
@@ -84,13 +83,15 @@ const Header = ({ activeHeading }) => {
             ) : null}
           </div>
           <div className={`${styles.button}`}>
-            <Link to="/seller">
+            <Link to="/Seller">
               <h1 className="text-[#fff] flex items-center">
-                Become Seller <IoIosArrowForward className="ml-1" />
+                Become Seller
+                <IoIosArrowForward className="ml-1" />
               </h1>
             </Link>
           </div>
         </div>
+        {/* End First part of header shop serch bar */}
       </div>
       <div
         className={`${
@@ -128,35 +129,39 @@ const Header = ({ activeHeading }) => {
           </div>
           <div className="flex">
             <div className={`${styles.noramlFlex}`}>
-              <div
-                className="relative cursor-pointer mr-[15px]"
-                // onClick={() => setOpenWishlist(true)}
-              >
+              <div className="relative cursor-pointer mr-[15px]">
                 <AiOutlineHeart size={30} color="rgb(255 255 255 / 83%)" />
-                <span className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
-                  0{/* {wishlist && wishlist.length} */}
+                <span className="absolute right-0 top-0 rounded-full bg-[#3BC177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
+                  0
                 </span>
               </div>
             </div>
             <div className={`${styles.noramlFlex}`}>
-              <div
-                className="relative cursor-pointer mr-[15px]"
-                // onClick={() => setOpenWishlist(true)}
-              >
-                <AiOutlineShopping size={30} color="rgb(255 255 255 / 83%)" />
-                <span className="absolute right-0 top-0 rounded-full bg-[#3bc177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
-                  0{/* {wishlist && wishlist.length} */}
+              <div className="relative cursor-pointer mr-[15px]">
+                <AiOutlineShoppingCart
+                  size={30}
+                  color="rgb(255 255 255 / 83%)"
+                />
+                <span className="absolute right-0 top-0 rounded-full bg-[#3BC177] w-4 h-4 top right p-0 m-0 text-white font-mono text-[12px] leading-tight text-center">
+                  1
                 </span>
               </div>
             </div>
             <div className={`${styles.noramlFlex}`}>
-              <div
-                className="relative cursor-pointer mr-[15px]"
-                // onClick={() => setOpenWishlist(true)}
-              >
-                <Link to="/login">
-                  <CgProfile size={30} color="rgb(255 255 255 / 83%)" />
-                </Link>
+              <div className="relative cursor-pointer mr-[15px]">
+                {isAuthenticated ? (
+                  <Link to="/profile">
+                    <img
+                      src={`${backend_url}${user.avatar}`}
+                      className="w-[35px] h-[35px] rounded-full"
+                      alt=""
+                    />
+                  </Link>
+                ) : (
+                  <Link to="/login">
+                    <CgProfile size={30} color="rgb(255 255 255 / 83%)" />
+                  </Link>
+                )}
               </div>
             </div>
           </div>

@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { navItems } from "../../Static/data";
 import styles from "../../styles/styles";
-
 const Navbar = ({ active }) => {
   return (
     <div className={`block 800px:${styles.noramlFlex}`}>
@@ -12,10 +11,8 @@ const Navbar = ({ active }) => {
             <Link
               to={i.url}
               className={`${
-                active === index + 1
-                  ? "text-[#17dd1f]"
-                  : "text-black 800px:text-[#fff]"
-              } pb-[30px] 800px:pb-0 font-[500] px-6 cursor-pointer}`}
+                active === index + 1 ? "text-[#17DD1F]" : "text-[#fff]"
+              } font-[500] px-6 cursor-pointer}`}
             >
               {i.title}
             </Link>
@@ -24,5 +21,4 @@ const Navbar = ({ active }) => {
     </div>
   );
 };
-
 export default Navbar;

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { server } from "../../server";
-debugger;
+
 // load user
 export const loadUser = () => async (dispatch) => {
   try {
@@ -17,6 +17,7 @@ export const loadUser = () => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: "LoadUserFail",
+      // payload: error,
       payload: error.response.data.message,
     });
   }

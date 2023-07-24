@@ -8,7 +8,7 @@
     "dev": "nodemon backend/server.js",
     "start": "node backend/server.js"
   },
-  "author": "",
+  "author": "AJMAL HUSSAIN",
   "license": "ISC",
   "devDependencies": {
     "tailwindcss": "^3.3.2"
