@@ -18,22 +18,27 @@ import {
   ShopCreatePage,
   CheckoutPage,
   SellerActivationPage,
+  ShopLoginPage,
 } from "./Routes.js";
 
 import Store from "./redux/store";
-import { loadUser } from "./redux/actions/user";
+import { loadSeller, loadUser } from "./redux/actions/user";
 import { useSelector } from "react-redux";
 import ProtectedRoute from "./ProtectedRoute";
+// import { ShopHomePage } from "./ShopRoutes";
+// import SellerProtectedRoute from "./SellerProtectedRoute";
 
 const App = () => {
   const { loading, isAuthenticated } = useSelector((state) => state.user);
+  const { isLoading, isSeller } = useSelector((state) => state.seller);
   useEffect(() => {
     Store.dispatch(loadUser());
+    Store.dispatch(loadSeller());
   }, []);
 
   return (
     <>
-      {loading ? null : (
+      {loading || isLoading ? null : (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />} />
@@ -62,8 +67,17 @@ const App = () => {
             <Route path="/best-selling" element={<BestSellingPage />} />
             <Route path="/events" element={<EventsPage />} />
             <Route path="/faq" element={<FAQPage />} />
-
+            {/* Shop Routes */}
             <Route path="/shop-create" element={<ShopCreatePage />} />
+            <Route path="/shop-login" element={<ShopLoginPage />} />
+            {/* <Route
+              path="/shop/:id"
+              element={
+                <SellerProtectedRoute isSeller={isSeller}>
+                  <ShopHomePage />
+                </SellerProtectedRoute>
+              }
+            /> */}
 
             <Route
               path="/profile"
