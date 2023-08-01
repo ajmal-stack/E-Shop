@@ -1,3 +1,4 @@
 import ShopDashboardPage from "../Pages/Shop/ShopDashBoardPage";
+import ShopCreateProduct from "../Pages/Shop/ShopCreateProduct";
 
-export { ShopDashboardPage };
+export { ShopDashboardPage, ShopCreateProduct };

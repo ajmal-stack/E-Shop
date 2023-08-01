@@ -19,14 +19,14 @@ import {
   CheckoutPage,
   SellerActivationPage,
   ShopLoginPage,
-} from "./Routes/Routes.js";
-import { ShopDashboardPage } from "./Routes/ShopRoutes";
+} from "./routes/Routes.js";
+import { ShopDashboardPage, ShopCreateProduct } from "./routes/ShopRoutes";
 import Store from "./redux/store";
 import { loadSeller, loadUser } from "./redux/actions/user";
-import { useSelector } from "react-redux";
-import ProtectedRoute from "./Routes/ProtectedRoute";
+// import { useSelector } from "react-redux";
+import ProtectedRoute from "./routes/ProtectedRoute";
 import { ShopHomePage } from "./ShopRoutes";
-import SellerProtectedRoute from "./Routes/SellerProtectedRoute";
+import SellerProtectedRoute from "./routes/SellerProtectedRoute";
 
 const App = () => {
   useEffect(() => {
@@ -81,6 +81,14 @@ const App = () => {
             element={
               <SellerProtectedRoute>
                 <ShopDashboardPage />
+              </SellerProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard-create-product"
+            element={
+              <SellerProtectedRoute>
+                <ShopCreateProduct />
               </SellerProtectedRoute>
             }
           />
