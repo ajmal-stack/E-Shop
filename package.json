@@ -11,8 +11,6 @@
   "author": "AjmalHussain",
   "license": "ISC",
   "dependencies": {
-    "@material-ui/core": "^4.12.4",
-    "@material-ui/data-grid": "^4.0.0-alpha.37",
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
