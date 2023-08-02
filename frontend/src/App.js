@@ -20,7 +20,11 @@ import {
   SellerActivationPage,
   ShopLoginPage,
 } from "./routes/Routes.js";
-import { ShopDashboardPage, ShopCreateProduct } from "./routes/ShopRoutes";
+import {
+  ShopDashboardPage,
+  ShopCreateProduct,
+  ShopAllProducts,
+} from "./routes/ShopRoutes";
 import Store from "./redux/store";
 import { loadSeller, loadUser } from "./redux/actions/user";
 // import { useSelector } from "react-redux";
@@ -89,6 +93,14 @@ const App = () => {
             element={
               <SellerProtectedRoute>
                 <ShopCreateProduct />
+              </SellerProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard-products"
+            element={
+              <SellerProtectedRoute>
+                <ShopAllProducts />
               </SellerProtectedRoute>
             }
           />
