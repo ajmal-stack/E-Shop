@@ -65,19 +65,23 @@ router.delete(
   catchAsyncErrors(async (req, res, next) => {
     try {
       const productId = req.params.id;
-      const event = await Event.findById(productId);
+      const eventData = await Event.findById(productId);
+
+      eventData.images.forEach((imageUrl) => {
+        const filename = imageUrl;
+        const filePath = `uploads/${filename}`;
+        fs.unlink(filePath, (err) => {
+          if (err) {
+            console.log(err);
+          }
+        });
+      });
+
+      const event = await Event.findByIdAndDelete(productId);
 
       if (!event) {
         return next(new ErrorHandler("Event not found with this id!", 500));
       }
-
-      const filePath = event.images;
-      fs.unlink(filePath, (err) => {
-        if (err) {
-          console.log(err);
-          res.status(500).json({ message: "error deleting file" });
-        }
-      });
 
       res.status(201).json({
         success: true,
