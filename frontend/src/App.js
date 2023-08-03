@@ -24,6 +24,8 @@ import {
   ShopDashboardPage,
   ShopCreateProduct,
   ShopAllProducts,
+  ShopCreateEvent,
+  ShopAllEvents,
 } from "./routes/ShopRoutes";
 import Store from "./redux/store";
 import { loadSeller, loadUser } from "./redux/actions/user";
@@ -101,6 +103,23 @@ const App = () => {
             element={
               <SellerProtectedRoute>
                 <ShopAllProducts />
+              </SellerProtectedRoute>
+            }
+          />
+          <Route
+            path="/dashboard-create-event"
+            element={
+              <SellerProtectedRoute>
+                <ShopCreateEvent />
+              </SellerProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard-events"
+            element={
+              <SellerProtectedRoute>
+                <ShopAllEvents />
               </SellerProtectedRoute>
             }
           />
