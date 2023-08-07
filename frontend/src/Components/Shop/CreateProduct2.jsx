@@ -5,8 +5,9 @@ import { categoriesData } from "../../Static/data";
 import { createProduct } from "../../redux/actions/product";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { RiUploadCloudFill } from "react-icons/ri";
 
-const CreateProduct = () => {
+const CreateProduct2 = () => {
   const { seller } = useSelector((state) => state.seller);
   const { success, error } = useSelector((state) => state.products);
 
@@ -85,7 +86,7 @@ const CreateProduct = () => {
 
   return (
     <div className="w-[90%] 800px:w-[50%] bg-white  shadow h-[80vh] rounded-[4px] p-3 overflow-y-scroll">
-      <h5 className="text-[30px] font-Poppins text-center">Create Product</h5>
+      <h5 className="text-[30px] font-Poppins text-center">Create Product 2</h5>
       {/* create product form */}
       <form onSubmit={handleSubmit}>
         <br />
@@ -121,7 +122,7 @@ const CreateProduct = () => {
         </div>
         <br />
         <div>
-          <label className="pb-2">
+          <label className="pb-2 ">
             Category <span className="text-red-500">*</span>
           </label>
           <select
@@ -205,7 +206,7 @@ const CreateProduct = () => {
           />
           <div className="w-full flex items-center flex-wrap">
             <label htmlFor="upload">
-              <AiOutlinePlusCircle size={30} className="mt-3" color="#555" />
+              <RiUploadCloudFill size={50} className="mt-3" color="#555" />
             </label>
             {images &&
               images.map((i) => (
@@ -231,4 +232,4 @@ const CreateProduct = () => {
   );
 };
 
-export default CreateProduct;
+export default CreateProduct2;

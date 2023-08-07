@@ -26,6 +26,8 @@ import {
   ShopAllProducts,
   ShopCreateEvent,
   ShopAllEvents,
+  ShopAllCoupouns,
+  ShopCreateProduct2,
 } from "./routes/ShopRoutes";
 import Store from "./redux/store";
 import { loadSeller, loadUser } from "./redux/actions/user";
@@ -70,6 +72,7 @@ const App = () => {
           <Route path="/best-selling" element={<BestSellingPage />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/faq" element={<FAQPage />} />
+
           {/* Shop Routes */}
           <Route path="/shop-create" element={<ShopCreatePage />} />
           <Route path="/shop-login" element={<ShopLoginPage />} />
@@ -90,6 +93,7 @@ const App = () => {
               </SellerProtectedRoute>
             }
           />
+
           <Route
             path="/dashboard-create-product"
             element={
@@ -98,6 +102,7 @@ const App = () => {
               </SellerProtectedRoute>
             }
           />
+
           <Route
             path="/dashboard-products"
             element={
@@ -120,6 +125,24 @@ const App = () => {
             element={
               <SellerProtectedRoute>
                 <ShopAllEvents />
+              </SellerProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard-coupouns"
+            element={
+              <SellerProtectedRoute>
+                <ShopAllCoupouns />
+              </SellerProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/dashboard-create-product2"
+            element={
+              <SellerProtectedRoute>
+                <ShopCreateProduct2 />
               </SellerProtectedRoute>
             }
           />
